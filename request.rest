@@ -1,0 +1,171 @@
+// register user
+POST http://192.168.10.30:9000/create_user
+Content-Type: application/json
+
+{
+  "name": "Administrator",
+  "email": "admin@itnbi.local",
+  "password": "111111",
+  "confPassword": "111111",
+  "role": "admin"
+}
+
+###
+// get all users
+GET http://192.168.10.30:9000/users
+Content-Type: application/json
+
+###
+// get user by email
+POST http://192.168.10.30:9000/cekuser
+Content-Type: application/json
+
+{
+  "email": "rido@itnbi.local"
+}
+
+###
+// login user
+POST http://192.168.10.30:9000/login
+Content-Type: application/json
+
+{
+  "email": "rido@itnbi.local",
+  "password": "111111"
+}
+
+###
+// get data user login
+GET http://192.168.10.30:9000/me
+Content-Type: application/json
+
+###
+// get all projects
+GET http://192.168.10.30:9000/dataprojects
+Content-Type: application/json
+
+###
+// get all projects
+GET http://192.168.10.30:9000/projects
+Content-Type: application/json
+
+###
+// get UID User by ID
+POST http://192.168.10.30:9000/getuid
+Content-Type: application/json
+
+{
+  "pic": "3"
+}
+
+###
+// create project
+POST http://192.168.10.30:9000/projects
+Content-Type: application/json
+
+{
+  "projectname": "SISTEM PALLER",
+  "description": "Sistem untuk Manajemen Data dan Transaksi Pallet",
+  "bagdept": "QIT",
+  "subbagdept": "IT",
+  "pic": "IKHWAN",
+  "location": "IT",
+  "ttlitem": "7",
+  "ttlbobot": "100",
+  "startproj": "2022-08-01",
+  "endproj": "2022-12-01",
+  "status": "I",
+  "inputby": "ADMIN"
+}
+
+###
+// create sub task
+POST http://192.168.10.30:9000/subtasks
+Content-Type: application/json
+
+{
+  "id": 12,
+  "subtask": "Membuat Design Model ERD Pallet",
+  "pic": "IKHWAN"
+}
+
+
+###
+// get project by id
+GET http://192.168.10.30:9000/projects/1662022435874
+Content-Type: application/json
+
+###
+// update data project by id
+PATCH http://192.168.10.30:9000/projects/1662022435874
+Content-Type: application/json
+
+{
+  "projectname": "PMS",
+  "description": "Project Management System"
+}
+
+###
+// delete project by id
+DELETE http://192.168.10.30:9000/projects/1662022768181
+Content-Type: application/json
+
+###
+// get task by projectid
+GET http://192.168.10.30:9000/tasks/1662521844931
+Content-Type: application/json
+
+###
+// get sub task by taskid
+GET http://192.168.10.30:9000/subtasks/1663053914051
+Content-Type: application/json
+
+###
+// get dept
+GET http://192.168.10.30:9000/getdept
+Content-Type: application/json
+
+###
+// get subdept
+GET http://192.168.10.30:9000/getsubdept/QIT
+Content-Type: application/json
+
+###
+// get subdept
+GET http://192.168.10.30:9000/newestproject
+Content-Type: application/json
+
+###
+// get subdept
+GET http://192.168.10.30:9000/getprojectnum
+Content-Type: application/json
+
+###
+// update close task project by id task
+PATCH http://192.168.10.30:9000/closetask/1
+Content-Type: application/json
+
+###
+// get project by status
+GET http://192.168.10.30:9000/projectstat/OPEN
+Content-Type: application/json
+
+###
+// get all task notif
+GET http://192.168.10.30:9000/tasks
+Content-Type: application/json
+
+###
+// get all notif
+GET http://192.168.10.30:9000/notif
+Content-Type: application/json
+
+###
+//update notif by id
+PATCH http://192.168.10.30:9000/notif/update/ND1663554990034
+Content-Type: application/json
+
+###
+//update task by id
+PATCH http://192.168.10.30:9000/tasks/update/1662521844127
+Content-Type: application/json

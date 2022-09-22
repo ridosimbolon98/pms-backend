@@ -1,0 +1,88 @@
+ALUR KARLO:
+=============
+A. Membuat OP
+   1. Klik Menu Penjualan
+   2. Pilih Order Penjualan
+   3. Pilih Buat Order Penjualan
+   4. Muncul Form Order Penjualan
+   5. Pilih Tipe OP (LOKAL)
+   6. Pilih Jenis SJ (PENJUALAN NORMAL)
+   7. Pilih Ambil (FRANCO EXTERNAL
+   8. Pilih Info Paket (CURAH/TANPA PALET)
+   9. Pilih Sales Produk (CTH: TINO)
+   10. Isi nama pemesan bebas (cth: NUSA)
+   11. Pilih Sales Area (CTH: TINO)
+   12. Klik cari (F1) untuk cari kode customer (cth: CS-189).
+   13. Pilih Provinsi Tujuan Pengiriman
+   14. Pilih Area Pengiriman (Cek dulu)
+       QUERY: "select top 10* from d_transaksi..t_sotmpmst where fc_custcode='CS-189' order by fd_sodate desc" cek column fc_areacode ='AADD' untuk area Semarang Kota.
+   15. Klik Detail di bawah Area untuk cek Detail Area Kirim. Cari yg kodenya AADD. Pastikan sudah ada di sistem.
+   16. Pilih Armana (cth: TRONTON)
+   17. Pilih Kirim (CTH: On-Truck)
+   18. Isi catatan yg detail
+   19. Lalu Klik Detail (F4).
+   20. Jika muncul Error Otoritas untuk "Customer ini telah Expired". Silakan Input Kembali. Lalu akan muncul Confirm invoice overdue, apakah akan dijalankan prosedur Open-Authority Overdue. Jika iya, klik Yes.
+   21. Masukkan nominal overdue, ketik keterangan detail lalu klik Ok.
+   22. Silakan klik Menu Master -> Pilih Customer, Lalu Pilih Buka Overdue Limit By Finance, Silkakan klik No Otoritasnya lalu klik Persetujuan Oleh Finance -> Klik Ok dan Pilih Yes.
+   23. Setelah itu lakukan otorisasi oleh Direksi dengan cara, Klik menu Master -> Customer -> Buka Persetujuan Od Manual -> Klik No Otoritas yg akan dibuka -> Klik Otorisasi disetujui manual tidak lewat SMS.
+   24. Jika sudah silakan input Order Penjulan Kembali dari langkah 1 s/d 19.
+   25. Setelah Klik Detail, akan muncul Form Buat Order Penjualan., silakan klik tombol Input(F4). Input Kode Item Barang lalu klik Cari Semua, Input Jumlah Hari Jatuh Tempo. Pilih Tipe Bonus, Input Jumlah LBR, Masukkan Kurs IDR 1.00, Masukkan jumlah Diskon, lalu Klik Save.
+   26. Jika Kode Item Barng lebih dari satu, silakan ulangi langkah no 25.
+   27. Jika sudah, silakan klik Tombol Master, lalu Klik Simpan Final.
+   28. Jika muncul pop up cetak, silakan klik No, lalu silakan catat nomor OPF nya.
+
+B. Membuat Jadwal Pengiriman.
+   1. Klik Menu Penjualan -> Jadwal Pengiriman -> Buat Jadwal Pengiriman
+   2. Muncul Form Buat Jadwal Pengiriman, silakan pilih nomor OPF yg tadi -> Lalu Klik Buat Jadwal.
+   3. Muncul Form Buat Jadwal Pengiriman. Silakan pastikan kembali Penerima. Jika sudah, silakan pilih Agreement Y untuk Karlo dan N untuk Bypass. Silakan klik Lihat daftar, Lalu pilih Penerimanya dan klik OK.
+   4. Klik Detail, dan Add All Item OP jika ingin semua item barang dikirim per hari itu juga.
+   5. Setelah itu, klik Master. Lalu Save Final dan klik Ok.
+
+C. Konfirmasi Jadwal Pengiriman
+   1. Silakan klik Menu Penjualan -> Jadwal Pengiriman -> Konfirmasi Jadwal Pengiriman.
+   2. Muncul Form Konfirmasi Jadwal Pengiriman, silakan Double Click No Order dari OPF yg sebelumnya dibuat.
+   3. Pilih Data Pelanggannya, lalu klik Konfirmasi.
+   4. Setalah itu akan muncul Detail Order Penjualan, klik Agreement, lalu Pilih Ekspeditur dan Armada yg akan digunakan.
+   5. Klik Konfirmasi Final lalu klik Exit.
+
+Jika berhasil artinya OPF berhasil dikirim menggunakan Karlo.
+
+D. Cek Progress Karlo.
+address: www.karlo.id/login
+username dan password sesuai dengan ekspeditur yg dipilih.
+cth: Ekspeditur Maheswara
+username: maheswara
+password: Maheswara123#
+   
+   1. Login sebagai Ekspeditur, 
+   2. Klik Menu Order -> Klik Tab Active List.
+   3. Kolom Aksi, klik Tombol Search. Silakan Klik Pilih Driver -> Muncul Modal, Pilih Driver dan Klik Submit.
+   4. ORM akan dirimkan  notif ke HP Driver.
+   5. Lalu Klik Update Order. Maka Order Berhasil dikirim ke Driver.
+   6. Untuk cek informasi driver, silakan cek di Card Info Loading / Unloading.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
