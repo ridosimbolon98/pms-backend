@@ -74,3 +74,18 @@ export const updateTaskStatus = async (req, res) =>{
       res.status(500).json({msg: error.message});
   }
 }
+
+export const getDBTask = async (req, res) =>{
+  try {
+      let response = await pool.query(
+        `select a.description, a.trxtype, a.foreignid as projectid, a.read_status, a."createdAt", a.taskfrom, b.name from sc_pms.notifications a
+        left join sc_pms.users b on a.taskfrom=b.uuid
+        where a.read_status='false' and a.taskfrom='${req.params.uuid}' 
+        order by a."createdAt" desc 
+        limit(4)`
+      );
+      res.status(200).json(response.rows);
+  } catch (error) {
+      res.status(500).json({msg: error.message});
+  }
+}
