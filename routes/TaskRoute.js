@@ -7,11 +7,13 @@ import {
   getAllMyTasks,
   getDBTask
 } from "../controllers/Notif.js";
+import { insertNewTask } from "../controllers/Tasks.js";
 import { verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
 router.get('/tasks', verifyUser, getAllTaskNotif);
+router.post('/tasks', verifyUser, insertNewTask);
 router.get('/dbtasks/:uuid', verifyUser, getDBTask);
 router.get('/mytasks/:id', verifyUser, getAllMyTasks);
 router.patch('/tasks/update/:taskid', verifyUser, updateTaskStatus);

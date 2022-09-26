@@ -1,6 +1,44 @@
 import pool from "../config/Queries.js";
 import moment from "moment-timezone";
+import Tasks from "../models/TaskModel.js";
+import Notifications from "../models/Notifications.js";
 
+export const insertNewTask = async(req, res) =>{
+    const {projectid, taskdesc, taskbobot, startdate, duedate, pic, from} = req.body;
+    const taskid = Date.now();
+    try {
+        let user = await pool.query(
+            `select uuid from sc_pms.users where id='${pic.value}'` 
+        );
+
+        await Tasks.create({
+            taskid: taskid,
+            projectid: projectid,
+            task_name: taskdesc,
+            progress: 0,
+            bobot: taskbobot,
+            pic: pic.value,
+            due_date: duedate,
+            t_status: false,
+            startdate: startdate
+        });
+
+        let nid = 'ND'+Date.now();
+
+        Notifications.create({
+            id: nid,
+            description: 'New Task' +': '+ taskdesc + '. Project ID: '+ projectid,
+            taskfrom: from,
+            taskto: user.rows[0].uuid,
+            trxtype: 'New Task',
+            foreignid: projectid,
+            read_status: false
+        });
+        res.status(201).json({msg: "New Task Created Successfuly"});
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
+}
 
 export const getTasksByProjectId = async (req, res) =>{
     try {
