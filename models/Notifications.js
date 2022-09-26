@@ -3,70 +3,60 @@ import db from "../config/Database.js";
 
 const {DataTypes} = Sequelize;
 
-const Tasks = db.define('task',{
-    taskid:{
+const Notifications = db.define('notifications',{
+    id:{
         type: DataTypes.STRING,
+        primaryKey: true,
         allowNull: false,
         validate:{
             notEmpty: true
         }
     },
-    projectid:{
+    description:{
         type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,
         }
     },
-    task_name:{
+    taskfrom:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
         }
     },
-    progress:{
+    taskto:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
         }
     },
-    bobot:{
+    trxtype:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
         }
     },
-    pic:{
+    foreignid:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true
         }
     },
-    due_date:{
-        type: DataTypes.DATE,
-        allowNull: false,
-        validate:{
-            notEmpty: true
-        }
-    },
-    t_status:{
+    read_status:{
         type: DataTypes.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
         validate:{
             notEmpty: true
         }
-    },
-    startdate:{
-        type: DataTypes.DATE,
-        allowNull: true
     }
 },{
     freezeTableName: true,
     schema: 'sc_pms',
 });
 
-export default Tasks;
+export default Notifications;

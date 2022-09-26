@@ -18,6 +18,7 @@ const store = new sessionStore({
     db: db
 });
 
+
 // (async()=>{
 //     await db.sync();
 // })();

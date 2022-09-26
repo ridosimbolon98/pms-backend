@@ -1,5 +1,6 @@
 import Project from "../models/ProjectModel.js";
 import Tasks from "../models/TaskModel.js";
+import Notifications from "../models/Notifications.js";
 
 export const allProjects = async (req, res) =>{
     try {
@@ -68,9 +69,8 @@ export const getProjectByStatus = async(req, res) =>{
 }
 
 export const createProject = async(req, res) =>{
-    const {projectname, description, bagdept, subbagdept, participant, location, ttlitem, ttlbobot, startproj, endproj, status, inputby} = req.body;
+    const {projectname, description, bagdept, subbagdept, participant, location, ttlitem, ttlbobot, startproj, endproj, status, inputby, uid} = req.body;
     const projectid = Date.now();
-    console.log(participant);
     try {
         await Project.create({
             projectid: projectid,
@@ -90,7 +90,6 @@ export const createProject = async(req, res) =>{
 
         let task_id = Date.now();
         for (let index = 0; index < location.length; index++) {
-            console.log(location[index]);
             Tasks.create({
                 taskid: task_id + index,
                 projectid: projectid,
@@ -98,9 +97,21 @@ export const createProject = async(req, res) =>{
                 progress: 0,
                 bobot: location[index].bobot,
                 pic: location[index].pic.value,
-                due_date: endproj,
+                due_date: location[index].duedate,
                 t_status: false,
-                startdate: startproj
+                startdate: location[index].startdate
+            });
+
+            let nid = 'ND'+Date.now()+index;
+
+            Notifications.create({
+                id: nid,
+                description: 'New Task' +': '+ location[index].task + '. Project ID: '+ projectid,
+                taskfrom: uid,
+                taskto: location[index].pic.uid,
+                trxtype: 'New Task',
+                foreignid: projectid,
+                read_status: false
             });
         }
         res.status(201).json({msg: "Project Created Successfuly"});
