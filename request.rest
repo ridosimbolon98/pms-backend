@@ -106,6 +106,15 @@ Content-Type: application/json
 }
 
 ###
+// search data project 
+POST  http://192.168.10.30:9000/projects/search
+Content-Type: application/json
+
+{
+  "keyword": "project"
+}
+
+###
 // delete project by id
 DELETE http://192.168.10.30:9000/projects/1662022768181
 Content-Type: application/json
@@ -174,3 +183,58 @@ Content-Type: application/json
 // get all notif
 GET http://192.168.10.30:9000/dbtasks/7c1a8998-4611-416a-9a31-54fa198e2142
 Content-Type: application/json
+
+https://texttospeech.googleapis.com/v1beta1/text:synthesizeckend
+
+
+# curl -H "Authorization: Bearer "$(gcloud auth application-default print-access-token) -H "Content-Type: application/json; charset=utf-8" --data "{
+#   'input':{
+#     'text':'I\'ve added the event to your calendar.'
+#   },
+#   'voice':{
+#     'languageCode':'en-gb',
+#     'name':'en-GB-Standard-A',
+#     'ssmlGender':'FEMALE'
+#   },
+#   'audioConfig':{
+#     'audioEncoding':'MP3'
+#   }
+# }" "https://texttospeech.googleapis.com/v1/text:synthesize"
+
+###
+//get details task by taskid
+GET http://192.168.10.30:9000/taskdetail/1664164723991
+Content-Type: application/json
+
+###
+POST http://192.168.10.30:9000/tools/upload
+Content-Type: application/json
+
+
+###
+// login user
+POST http://103.247.123.64:4000/login
+Content-Type: application/json
+
+{
+  "email": "rido@itnbi.local",
+  "password": "111111"
+}
+
+###
+// login user
+POST http://103.247.123.64:4000/login
+Content-Type: application/json
+
+{
+  "email": "rido@itnbi.local",
+  "password": "111111"
+}
+
+###
+POST http://103.247.123.64:4000/projects/search
+Content-Type: application/json
+
+{
+  "keyword": "project",
+}

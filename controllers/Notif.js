@@ -60,13 +60,27 @@ export const updateStatusNotif = async (req, res) =>{
   }
 }
 
+export const deleteTask = async (req, res) =>{
+  try {
+    let response = await pool.query(
+      `delete from sc_pms.sub_task where taskid = '${req.params.taskid}';
+       delete from sc_pms.task where taskid = '${req.params.taskid}';
+      `
+    );
+    if (response) {
+      res.status(200).json(response);
+    }
+  } catch (error) {
+      res.status(500).json({msg: error.message});
+  }
+}
+
 export const updateTaskStatus = async (req, res) =>{
   try {
     let updatedat = moment.tz(Date.now(), "Asia/Jakarta").format();
     let response = await pool.query(
       `update sc_pms.task set t_status='true', "updatedAt"='${updatedat}' where taskid='${req.params.taskid}'`
     );
-    console.log(response);
     if (response) {
       res.status(200).json(response);
     }

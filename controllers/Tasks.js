@@ -143,11 +143,52 @@ export const closeTaskById = async (req, res) =>{
 export const getUid = async (req, res) =>{
     try {
         var pic = req.body.pic;
-        const uuidUser = await pool.query(
+        
+        const task = await pool.query(
             `select uuid from sc_pms.users where id=cast(${pic} as integer)`
         );
         let to = uuidUser.rows[0].uuid;
         res.status(200).json(uuidUser.rows);
+    } catch(error){
+        res.status(500).json({msg: error.message});
+    }
+}
+
+export const taskDetails = async (req, res) =>{
+    try {
+        var taskid = req.params.taskid;
+        const task_dtl = await pool.query(
+            `select 
+                a.projectid,
+                a.taskid,
+                a.task_name,
+                a.progress,
+                a.pic,
+                c.name,
+                a.t_status,
+                a."updatedAt" as task_updated
+            from sc_pms.task as a 
+            left join sc_pms.users as c
+            on cast(a.pic as integer)=c.id
+            where a.taskid='${taskid}' 
+            order by a."createdAt" desc`
+        );
+        res.status(200).json(task_dtl.rows);
+    } catch(error){
+        res.status(500).json({msg: error.message});
+    }
+}
+
+export const updateTaskName = async (req, res) =>{
+    try {
+        var taskid = req.body.taskid;
+        var tn = req.body.task_name;
+        var taskname = tn.toUpperCase();
+        var updatedat = moment.tz(Date.now(), "Asia/Jakarta").format();
+        const response = await pool.query(
+            `update sc_pms.task set task_name='${taskname}', "updatedAt"='${updatedat}' where taskid='${taskid}'`
+        );
+        res.status(200).json({msg: response});
     } catch(error){
         res.status(500).json({msg: error.message});
     }

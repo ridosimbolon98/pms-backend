@@ -4,7 +4,12 @@ import Notifications from "../models/Notifications.js";
 
 export const allProjects = async (req, res) =>{
     try {
-        let response = await Project.findAll();
+        let response = await Project.findAll({
+			order: [
+				['startproj', 'ASC'],
+				['projectname', 'ASC'],
+			]
+		});
         res.status(200).json(response);
     } catch (error) {
         res.status(500).json({msg: error.message});
@@ -15,9 +20,19 @@ export const getProjects = async (req, res) =>{
     try {
         let response;
         if(req.role === "admin"){
-            response = await Project.findAll();
+            response = await Project.findAll({
+				order: [
+					['startproj', 'ASC'],
+					['projectname', 'ASC'],
+				]
+			});
         }else{
-            response = await Project.findAll();
+            response = await Project.findAll({
+				order: [
+					['startproj', 'ASC'],
+					['projectname', 'ASC'],
+				]
+			});
         }
         res.status(200).json(response);
     } catch (error) {
@@ -59,7 +74,11 @@ export const getProjectByStatus = async(req, res) =>{
         const project = await Project.findAll({
             where:{
                 status: req.params.status
-            }
+            },
+			order: [
+				['startproj', 'ASC'],
+				['projectname', 'ASC'],
+			]
         });
         if(!project) return res.status(404).json({msg: "Data tidak ditemukan"});
         res.status(200).json(project);

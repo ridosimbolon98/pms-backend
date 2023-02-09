@@ -1,6 +1,7 @@
 import express from "express";
 import { 
     dataProjects,
+    searchProjects,
     getDept, 
     getNewestProject, 
     getProjectNum, 
@@ -26,6 +27,7 @@ import { verifyUser } from "../middleware/AuthUser.js";
 const router = express.Router();
 
 router.get('/projects',verifyUser, getProjects);
+router.post('/projects/search',verifyUser, searchProjects);
 router.get('/projectstat/:status',verifyUser, getProjectByStatus);
 router.get('/tasks/:projectid',verifyUser, getTasksByProjectId);
 router.get('/subtasks/:taskid',verifyUser, getSubTaskByTaskId);
